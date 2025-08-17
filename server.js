@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose'); //through this we can connect to database
 const bodyParser = require('body-parser');
 
+const cors=require('cors');
+
 const app=express();
 
 
@@ -10,6 +12,9 @@ const postRoutes = require('./routes/posts'); //import routes
 
 //app middleware
 app.use(bodyParser.json());
+
+//use as middleware cors
+app.use(cors());
 
 
 //route middleware
