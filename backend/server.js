@@ -18,7 +18,9 @@ app.use(cors());
 
 
 //route middleware
-app.use( postRoutes);
+// app.use( postRoutes);
+app.use('/', postRoutes); // Mount router at root
+
 
 
 
