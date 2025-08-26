@@ -25,16 +25,37 @@ router.post('/post/save',async (req,res)=>{
 
 //get post
 
-router.get('/posts',async (req,res)=>{
-   try{
-      let posts = await Posts.find().exec();
-      res.json(posts);
-   }catch(err){
-      res.status(400).json({error:err});
-   }
-}
-);
+router.get('/posts', async (req, res) => {
+  try {
+    let posts = await Posts.find().exec();
+    return res.status(200).json({
+      success: true,
+      existingPosts: posts
+    });
+  } catch (err) {
+    return res.status(400).json({ error: err.message });
+  }
+});
 
+
+
+
+// Get specific post
+router.get('/post/:id', async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const post = await Posts.findById(postId);  // use await, no callback
+    if (!post) {
+      return res.status(404).json({ success: false, message: "Post not found" });
+    }
+    return res.status(200).json({
+      success: true,
+      post
+    });
+  } catch (err) {
+    return res.status(400).json({ success: false, error: err.message });
+  }
+});
 
 
 
