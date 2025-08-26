@@ -8,7 +8,7 @@ const app=express();
 
 
 //impost routes
-const postRoutes = require('./routes/posts'); //import routes
+const postRoutes = require('./routes/postsRouts'); //import routes
 
 //app middleware
 app.use(bodyParser.json());
